@@ -71,34 +71,25 @@ const getSkiAsync = async (number) => {
 
 
 //await
-
 const sportDeSki = async () => {
 
     const alpin = getSkiAsync(1)
     const rando = getSkiAsync(2)
-    const tout = await Promise.all([alpin, rando])
-
-    return tout
+    return await Promise.all([alpin, rando])
 }
 
 const sportDeSki2 =  async () => {
 
     const alpin = await getSkiAsync(3)
     const rando = await getSkiAsync(4)
-
-    let promise = await fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
-
-    if(promise.status == 200){
-
-    }
-
-
-
     return [alpin, rando]
 }
 
 sportDeSki().then(console.log)
 sportDeSki2().then(console.log)
+
+
+
 
 
 
