@@ -50,15 +50,14 @@ const getSki = (number) => {
 }
 //getSki(2).then(data => console.log(data))
 
+//async permet de transformer le retour d'une fonction en Promise
 const getSkiAsync = async (number) => {
-
     const skis = {
         1: 'alpin',
         2: 'nautique',
         3: 'fond',
         4: 'randonnée'
     }
-
     let i = 0;
     while (i < 1_000_000_000) {
         i++
@@ -71,12 +70,15 @@ const getSkiAsync = async (number) => {
 
 
 //await
+//les appels sont lancés en parallèle mais on attend que les
+//deux soient revenus pour retourner les infos
 const sportDeSki = async () => {
     const alpin = getSkiAsync(1)
     const rando = getSkiAsync(2)
     return await Promise.all([alpin, rando])
 }
-
+//les appels sont lancés en série le temps d'éxécution est donc plus long
+//car on attend que le premier appel soit revenu avant de passer au suivant
 const sportDeSki2 =  async () => {
     const alpin = await getSkiAsync(3)
     const rando = await getSkiAsync(4)
@@ -85,6 +87,7 @@ const sportDeSki2 =  async () => {
 
 sportDeSki2().then(console.log)
 sportDeSki().then(console.log)
+//ordre d'arrivée : 3 - 1 - 2 - 4
 
 
 
